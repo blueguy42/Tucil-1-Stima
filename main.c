@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "word.h"
 
-void solveE (char **puzzle, int Row, int Col, int pRow, int pCol, char *word, int length, int *foundBool) {
+
+void solveE (int Row, int Col, char puzzle[Row][Col], int pRow, int pCol, char *word, int length, int *foundBool) {
     int i = pRow, j = pCol, k = 0;
     int bool = 1;
 
@@ -106,8 +107,15 @@ int main() {
         }
         printf("\n");
 
+        // Brute-Force Algorithm
+        int found;
         for (i=0; i < wordcount; i++) {
-            
+            for (j=0; j < Row; j++) {
+                for (k=0; k < Col; k++) {
+                    solveE(Row, Col, &puzzle[Row][Col], j, k, words[i].word, words[i].length, &found);
+                    printf("%s %d", words[i].word, found);
+                }
+            }
         }
 
         
