@@ -1,12 +1,26 @@
 #include <stdio.h>
 #include "word.h"
 
+void solveE (char **puzzle, int Row, int Col, int pRow, int pCol, char *word, int length, int *foundBool) {
+    int i = pRow, j = pCol, k = 0;
+    int bool = 1;
+
+    while ((j < Col) && (k < length) && bool) {
+        if (puzzle[i][j] != word[k]) {
+            bool = 0;
+        }
+        j++;
+        k++;
+    }
+    *foundBool = bool;
+}
+
 int main() {
     int i = 0, j = 0, k = 0;
 
-    // Read filename of crossword
+    // Read filename of puzzle
     char filename[200];
-    printf("Insert filename of crossword (including the format): ");
+    printf("Insert filename of puzzle (including the format): ");
     scanf("%s", filename);
 
     // Read file
@@ -22,7 +36,7 @@ int main() {
         printf("     WORD SEARCH PUZZLE\n");
         printf("----------------------------\n");
 
-        // Read rows and columns of crossword matrix
+        // Read rows and columns of puzzle matrix
         c = cPrev = getc(fp);
         while ((c != '\n') || (cPrev != '\n')) {
             if (c == '\n') {
@@ -38,14 +52,14 @@ int main() {
         fclose(fp);
         printf("%d ROWS and %d COLUMNS\n\n", Row, Col);
 
-        // Read crossword matrix
-        char CROSSWORD[Row][Col];
+        // Read puzzle matrix
+        char puzzle[Row][Col];
 
         fp = fopen(filename, "r");
         c = cPrev = getc(fp);
         while ((c != '\n') || (cPrev != '\n')) {
             if (c != '\n' && c != ' ') {
-                CROSSWORD[i][j] = c;
+                puzzle[i][j] = c;
                 j++;
                 if (j == Col) {
                     j = 0;
@@ -59,7 +73,7 @@ int main() {
         // Print array
         for (i=0; i < Row; i++) {
             for (j=0; j < Col; j++) {
-                printf("%c ", CROSSWORD[i][j]);
+                printf("%c ", puzzle[i][j]);
             }
             printf("\n");
         }
@@ -92,7 +106,9 @@ int main() {
         }
         printf("\n");
 
-
+        for (i=0; i < wordcount; i++) {
+            
+        }
 
         
     }
