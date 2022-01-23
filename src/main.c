@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <time.h>
 
 typedef struct {
@@ -338,15 +339,18 @@ int main() {
     
 
     // Read filename of puzzle
+    char directory[] = "../test/";
     char filename[200];
     printf("Insert filename of puzzle (including the format): ");
     scanf("%s", filename);
+    strcat(directory,filename);
+
 
     // Read file
     char c, cPrev;
     int Row = 0, Col = 0;
     int foundRow = 0;
-    FILE *fp = fopen(filename, "r");
+    FILE *fp = fopen(directory, "r");
 
     if (fp == NULL) {
         printf("No such file with name %s is found!\n", filename);
@@ -376,7 +380,7 @@ int main() {
         Puzzle.row = Row;
         Puzzle.col = Col;
 
-        fp = fopen(filename, "r");
+        fp = fopen(directory, "r");
         c = cPrev = getc(fp);
         while ((c != '\n') || (cPrev != '\n')) {
             if (c != '\n' && c != ' ') {
