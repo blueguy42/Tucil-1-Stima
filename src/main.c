@@ -36,6 +36,7 @@ void CopyEmptyMatrix (Matrix original, Matrix *copy) {
     *copy = temp;
 }
 
+// Check first letter of word
 void solveFirst (Matrix Puzzle, int pRow, int pCol, Word word, int *compare, int *firstFound) {
     int bool;
     if (Puzzle.matrix[pRow][pCol] != word.word[0]) {
@@ -47,15 +48,14 @@ void solveFirst (Matrix Puzzle, int pRow, int pCol, Word word, int *compare, int
     *firstFound = bool;
 }
 
+// Check for direction East
 void solveE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pCol < (Puzzle.col - word.length + 1)) {
             int i = pRow, j = pCol+1, k = 1;
@@ -68,9 +68,7 @@ void solveE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
                         allFound = 1;
                     }
                 }
-                j++;
-                k++;
-                counter++;
+                j++; k++; counter++;
             }
 
             if (allFound) {
@@ -84,15 +82,14 @@ void solveE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
     }
 }
 
+// Check for direction South-East
 void solveSE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol < (Puzzle.col - word.length + 1)) && (pRow < (Puzzle.row - word.length + 1))) {
             int i = pRow+1, j = pCol+1, k = 1;
@@ -105,10 +102,7 @@ void solveSE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
                         allFound = 1;
                     }
                 }
-                i++;
-                j++;
-                k++;
-                counter++;
+                i++; j++; k++; counter++;
             }
 
             if (allFound) {
@@ -122,15 +116,14 @@ void solveSE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
     }
 }
 
+// Check for direction South
 void solveS (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pRow < (Puzzle.row - word.length + 1)) {
             int i = pRow+1, j = pCol, k = 1;
@@ -143,9 +136,7 @@ void solveS (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
                         allFound = 1;
                     }
                 }
-                i++;
-                k++;
-                counter++;
+                i++; k++; counter++;
             }
 
             if (allFound) {
@@ -159,15 +150,14 @@ void solveS (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
     }
 }
 
+// Check for direction South-West
 void solveSW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol >= (word.length - 1)) && (pRow < (Puzzle.row - word.length + 1))) {
             int i = pRow+1, j = pCol-1, k = 1;
@@ -180,10 +170,7 @@ void solveSW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
                         allFound = 1;
                     }
                 }
-                i++;
-                j--;
-                k++;
-                counter++;
+                i++; j--; k++; counter++;
             }
 
             if (allFound) {
@@ -197,15 +184,14 @@ void solveSW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
     }
 }
 
+// Check for direction West
 void solveW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pCol >= (word.length - 1)) {
             int i = pRow, j = pCol-1, k = 1;
@@ -218,9 +204,7 @@ void solveW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
                         allFound = 1;
                     }
                 }
-                j--;
-                k++;
-                counter++;
+                j--; k++; counter++;
             }
 
             if (allFound) {
@@ -234,15 +218,14 @@ void solveW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
     }
 }
 
+// Check for direction North-West
 void solveNW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol >= (word.length - 1)) && (pRow >= (word.length - 1))) {
             int i = pRow-1, j = pCol-1, k = 1;
@@ -255,10 +238,7 @@ void solveNW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
                         allFound = 1;
                     }
                 }
-                i--;
-                j--;
-                k++;
-                counter++;
+                i--; j--; k++; counter++;
             }
 
             if (allFound) {
@@ -272,15 +252,14 @@ void solveNW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
     }
 }
 
+// Check for direction North
 void solveN (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pRow >= (word.length - 1)) {
             int i = pRow-1, j = pCol, k = 1;
@@ -293,9 +272,7 @@ void solveN (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
                         allFound = 1;
                     }
                 }
-                i--;
-                k++;
-                counter++;
+                i--; k++; counter++;
             }
 
             if (allFound) {
@@ -309,15 +286,14 @@ void solveN (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *
     }
 }
 
+// Check for direction North-East
 void solveNE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
     if (!*foundBool) {
         int bool, allFound, counter;
-        counter = *compare;
-        bool = 1;
-        allFound = 0;
+        counter = *compare; bool = 1; allFound = 0;
         Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol < (Puzzle.col - word.length + 1)) && (pRow >= (word.length - 1))) {
             int i = pRow-1, j = pCol+1, k = 1;
@@ -330,10 +306,7 @@ void solveNE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
                         allFound = 1;
                     }
                 }
-                i--;
-                j++;
-                k++;
-                counter++;
+                i--; j++; k++; counter++;
             }
 
             if (allFound) {
@@ -367,8 +340,7 @@ int main() {
 
     // Read file
     char c, cPrev;
-    int Row = 0, Col = 0;
-    int foundRow = 0;
+    int Row = 0, Col = 0, foundRow = 0;
     FILE *fp = fopen(directory, "r");
 
     if (fp == NULL) {
@@ -396,8 +368,7 @@ int main() {
 
         // Read puzzle matrix
         Matrix Puzzle;
-        Puzzle.row = Row;
-        Puzzle.col = Col;
+        Puzzle.row = Row; Puzzle.col = Col;
 
         fp = fopen(directory, "r");
         c = cPrev = getc(fp);
@@ -460,7 +431,7 @@ int main() {
             }
             printf("\n");
 
-            found = 0;
+            found = 0; 
             j = 0;
             while (j < Row && !found) {
                 k = 0;
@@ -485,14 +456,12 @@ int main() {
             }
         }
         time = clock() - time;
-        double time_consumed = ((double) time)/CLOCKS_PER_SEC;
+        int time_consumed = (((double) time)/CLOCKS_PER_SEC)*1000;
         printf("----------------------------\n");
         printf("         STATISTICS\n");
         printf("----------------------------\n");
         printf("TOTAL LETTER COMPARISON: %d LETTERS\n", compare);
-        printf("TOTAL TIME TAKEN: %f seconds\n\n", time_consumed);
-        
-        
+        printf("TOTAL TIME TAKEN: %d miliseconds\n\n", time_consumed);        
     }
     
     return 0;
