@@ -36,293 +36,312 @@ void CopyEmptyMatrix (Matrix original, Matrix *copy) {
     *copy = temp;
 }
 
-void solveE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
+void solveFirst (Matrix Puzzle, int pRow, int pCol, Word word, int *compare, int *firstFound) {
+    int bool;
+    if (Puzzle.matrix[pRow][pCol] != word.word[0]) {
+        bool = 0;
+    } else {
+        bool = 1;
+    }
+    *compare = *compare + 1;
+    *firstFound = bool;
+}
 
+void solveE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pCol < (Puzzle.col - word.length + 1)) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((j < Puzzle.col) && (k < word.length) && bool) {
+            int i = pRow, j = pCol+1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 j++;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveSE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol < (Puzzle.col - word.length + 1)) && (pRow < (Puzzle.row - word.length + 1))) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i < Puzzle.row) && (j < Puzzle.col) && (k < word.length) && bool) {
+            int i = pRow+1, j = pCol+1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i++;
                 j++;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveS (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pRow < (Puzzle.row - word.length + 1)) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i < Puzzle.row) && (k < word.length) && bool) {
+            int i = pRow+1, j = pCol, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i++;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveSW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol >= (word.length - 1)) && (pRow < (Puzzle.row - word.length + 1))) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i < Puzzle.row) && (j >= 0) && (k < word.length) && bool) {
+            int i = pRow+1, j = pCol-1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i++;
                 j--;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pCol >= (word.length - 1)) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((j >= 0) && (k < word.length) && bool) {
+            int i = pRow, j = pCol-1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 j--;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveNW (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol >= (word.length - 1)) && (pRow >= (word.length - 1))) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i >= 0) && (j >= 0) && (k < word.length) && bool) {
+            int i = pRow-1, j = pCol-1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i--;
                 j--;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveN (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if (pRow >= (word.length - 1)) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i >= 0) && (k < word.length) && bool) {
+            int i = pRow-1, j = pCol, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i--;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
 }
 
 void solveNE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int *compare) {
-    int bool, counter;
-    bool = *foundBool;
-    counter = *compare;
-
     Matrix Solution;
     CopyEmptyMatrix(Puzzle, &Solution);
 
-    if (!bool) {
+    if (!*foundBool) {
+        int bool, allFound, counter;
+        counter = *compare;
+        bool = 1;
+        allFound = 0;
+        Solution.matrix[pRow][pCol] = Puzzle.matrix[pRow][pCol];
         if ((pCol < (Puzzle.col - word.length + 1)) && (pRow >= (word.length - 1))) {
-            int i = pRow, j = pCol, k = 0;
-            bool = 1;
-            while ((i >= 0) && (j < Puzzle.col) && (k < word.length) && bool) {
+            int i = pRow-1, j = pCol+1, k = 1;
+            while ((k < word.length) && bool) {
                 Solution.matrix[i][j] = Puzzle.matrix[i][j];
                 if (Puzzle.matrix[i][j] != word.word[k]) {
                     bool = 0;
+                } else {
+                    if (k == word.length-1) {
+                        allFound = 1;
+                    }
                 }
                 i--;
                 j++;
                 k++;
                 counter++;
             }
-            if (k < word.length) {
-                bool = 0;
-            }
 
-            if (bool) {
+            if (allFound) {
                 PrintMatrix(Solution);
                 printf("\n");
             }
 
-            *foundBool = bool;
+            *foundBool = allFound;
             *compare = counter;
         }
     }
@@ -433,7 +452,7 @@ int main() {
         printf("         SOLUTIONS\n");
         printf("----------------------------\n");
         time = clock();
-        int found, compare = 0;
+        int found, firstFound, compare = 0;
         for (i=0; i < wordcount; i++) {
             printf("%d. ", i+1);
             for (l = 0; l < words[i].length; l++) {
@@ -446,14 +465,17 @@ int main() {
             while (j < Row && !found) {
                 k = 0;
                 while (k < Col && !found) {
-                    solveE(Puzzle, j, k, words[i], &found, &compare);
-                    solveSE(Puzzle, j, k, words[i], &found, &compare);
-                    solveS(Puzzle, j, k, words[i], &found, &compare);
-                    solveSW(Puzzle, j, k, words[i], &found, &compare);
-                    solveW(Puzzle, j, k, words[i], &found, &compare);
-                    solveNW(Puzzle, j, k, words[i], &found, &compare);
-                    solveN(Puzzle, j, k, words[i], &found, &compare);
-                    solveNE(Puzzle, j, k, words[i], &found, &compare);
+                    solveFirst(Puzzle, j, k, words[i], &compare, &firstFound);
+                    if (firstFound) {
+                        solveE(Puzzle, j, k, words[i], &found, &compare);
+                        solveSE(Puzzle, j, k, words[i], &found, &compare);
+                        solveS(Puzzle, j, k, words[i], &found, &compare);
+                        solveSW(Puzzle, j, k, words[i], &found, &compare);
+                        solveW(Puzzle, j, k, words[i], &found, &compare);
+                        solveNW(Puzzle, j, k, words[i], &found, &compare);
+                        solveN(Puzzle, j, k, words[i], &found, &compare);
+                        solveNE(Puzzle, j, k, words[i], &found, &compare);
+                    }
                     k++;
                 }
                 j++;
