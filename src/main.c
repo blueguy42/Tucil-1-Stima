@@ -331,7 +331,7 @@ int main() {
     
 
     // Read filename of puzzle
-    char directory[] = "../test/";
+    char directory[207] = "../test/";
     char filename[200];
     printf("Insert filename of puzzle (including the format): ");
     scanf("%s", filename);
