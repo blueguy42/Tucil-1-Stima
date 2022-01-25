@@ -1,3 +1,8 @@
+/*  NAMA  : Ahmad Alfani Handoyo
+    NIM   : 13520023
+    Kelas : K02
+    Tugas Kecil 1 IF2211 Strategi Algoritma Semester II tahun 2021/2022 */
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
