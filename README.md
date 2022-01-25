@@ -23,4 +23,5 @@ https://tools.atozteacherstuff.com/word-search-maker/wordsearch.php
 
 ## Contact
 This simple program was made by Ahmad Alfani Handoyo (13520023).
+
 You can find and contact me via <a href="http://www.linkedin.com/in/ahmad-alfani-handoyo/">LinkedIn</a>, <a href="http://github.com/blueguy42">GitHub</a>, <a href="http://www.instagram.com/afanhandoyo/">Instagram</a>, or <a href="mailto:ahmadalfanihandoyo1@gmail.com">Email</a>.
