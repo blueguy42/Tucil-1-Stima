@@ -17,11 +17,13 @@ A simple heuristic optimization is made to better the search and to address the 
 ## Setup and Requirements
 A system with a Windows OS is recommended. Running in a Linux-based system requires the input `.txt` files to be made from scratch in a Linux text editor because of the difference between a Windows to Linux newline.
 
-No additional requirements are needed to run the executable program file, but the <b>GCC compiler</b> is needed to re-compile the `main.c` file.
+No additional requirements are needed to run the executable program file, but the <b>GCC compiler</b> is needed to re-compile the `main.c` file. To re-compile the program, simply run `compile.bat`.
 
-To compile the program, simply run `compile.bat`.
+<b>IMPORTANT: Do not change the folder structure as the program is dependent on the folder structure!</b>
 
-A `.txt` file is used as the input for the puzzle and keywords. The file should follow the pattern
+A `.txt` file is used as the input for the puzzle and keywords. You can generate your own word search puzzle using this <a href="https://randomwordgenerator.com/">random word generator</a> and <a href="https://tools.atozteacherstuff.com/word-search-maker/wordsearch.php">word search generator</a>.
+
+The file should follow the pattern:
 ```
 <PUZZLE>
 
@@ -46,8 +48,11 @@ SATURN
 URANUS
 VENUS
 ```
+
+Make sure to put your puzzle text file into th `test/` folder!
+
 ## Usage
-You can generate your own word search puzzle using this <a href="https://randomwordgenerator.com/">random word generator</a> and <a href="https://tools.atozteacherstuff.com/word-search-maker/wordsearch.php">word search generator</a>.
+Simply run the `run.bat` from a file explorer or a terminal. Input the filename of the puzzle text file (including the .txt extension).
 
 ## Contact
 This program was made by Ahmad Alfani Handoyo (13520023).
