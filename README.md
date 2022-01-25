@@ -1,8 +1,9 @@
 # Word Search Puzzle Solver
 Tugas Kecil 1 IF2211 Strategi Algoritma
+
 Semester II Tahun 2021/2022
 
-<a href="https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2021-2022/Tugas-Kecil-1-(2022).pdf">Solving Word Search Puzzle Using Brute-Force Algorithm</a>
+Solving Word Search Puzzle Using Brute-Force Algorithm
 
 ## Table of Contents
 * [General Information](#general-information)
