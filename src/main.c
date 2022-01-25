@@ -321,148 +321,153 @@ void solveNE (Matrix Puzzle, int pRow, int pCol, Word word, int *foundBool, int 
 }
 
 int main() {
-    clock_t time;
-    int i = 0, j = 0, k = 0, l = 0;
+    char repeatprogram = 'Y';
+    while (repeatprogram == 'Y') {
+        clock_t time;
+        int i = 0, j = 0, k = 0, l = 0;
 
-    printf("====================================\n");
-    printf("WELCOME TO WORD SEARCH PUZZLE SOLVER\n");
-    printf("by 13520023 - Ahmad Alfani Handoyo\n");
-    printf("====================================\n\n");
-    
+        printf("====================================\n");
+        printf("WELCOME TO WORD SEARCH PUZZLE SOLVER\n");
+        printf("by 13520023 - Ahmad Alfani Handoyo\n");
+        printf("====================================\n\n");
+        
 
-    // Read filename of puzzle
-    char directory[207] = "../test/";
-    char filename[200];
-    printf("Insert filename of puzzle (including the format): ");
-    scanf("%s", filename);
-    strcat(directory,filename);
+        // Read filename of puzzle
+        char directory[207] = "../test/";
+        char filename[200];
+        printf("Insert filename of puzzle (including the file format): ");
+        scanf("%s", filename);
+        strcat(directory,filename);
 
 
-    // Read file
-    char c, cPrev;
-    int Row = 0, Col = 0, foundRow = 0;
-    FILE *fp = fopen(directory, "r");
+        // Read file
+        char c, cPrev;
+        int Row = 0, Col = 0, foundRow = 0;
+        FILE *fp = fopen(directory, "r");
 
-    if (fp == NULL) {
-        printf("No such file with name %s is found!\n", filename);
-    } else {
-        printf("----------------------------\n");
-        printf("     WORD SEARCH PUZZLE\n");
-        printf("----------------------------\n");
+        if (fp == NULL) {
+            printf("No such file with name %s is found!\n\n", filename);
+        } else {
+            printf("----------------------------\n");
+            printf("     WORD SEARCH PUZZLE\n");
+            printf("----------------------------\n");
 
-        // Read rows and columns of puzzle matrix
-        c = cPrev = getc(fp);
-        while ((c != '\n') || (cPrev != '\n')) {
-            if (c == '\n') {
-                foundRow = 1;
-                Row++;
-            }
-            if (!foundRow && c != ' ') {
-                Col++;
-            }
-            cPrev = c;
-            c = getc(fp);
-        }
-        fclose(fp);
-        printf("%d ROWS and %d COLUMNS\n\n", Row, Col);
-
-        // Read puzzle matrix
-        Matrix Puzzle;
-        Puzzle.row = Row; Puzzle.col = Col;
-
-        fp = fopen(directory, "r");
-        c = cPrev = getc(fp);
-        while ((c != '\n') || (cPrev != '\n')) {
-            if (c != '\n' && c != ' ') {
-                Puzzle.matrix[i][j] = c;
-                j++;
-                if (j == Col) {
-                    j = 0;
-                    i++;
+            // Read rows and columns of puzzle matrix
+            c = cPrev = getc(fp);
+            while ((c != '\n') || (cPrev != '\n')) {
+                if (c == '\n') {
+                    foundRow = 1;
+                    Row++;
                 }
+                if (!foundRow && c != ' ') {
+                    Col++;
+                }
+                cPrev = c;
+                c = getc(fp);
             }
-            cPrev = c;
-            c = getc(fp);
-        }
+            fclose(fp);
+            printf("%d ROWS and %d COLUMNS\n\n", Row, Col);
 
-        // Print puzzle
-        PrintMatrix(Puzzle);
+            // Read puzzle matrix
+            Matrix Puzzle;
+            Puzzle.row = Row; Puzzle.col = Col;
 
-        // Read words
-        int wordcount = 0, wordlength = 0;
-        Word words[30];
-        c = getc(fp);
-        while (c != EOF) {
-            if (c == '\n') {
-                words[wordcount].length = wordlength;
-                wordcount++;
-                wordlength = 0;
-            } else {
-                words[wordcount].word[wordlength] = c;
-                wordlength++;
-            }
-            c = getc(fp);
-        }
-        words[wordcount].length = wordlength;
-        wordcount++;
-        fclose(fp);
-
-        // Print words
-        printf("\nKEYWORDS:\n");
-        for (i=0; i < wordcount; i++) {
-            printf("%d. ", i+1);
-            for (j = 0; j < words[i].length; j++) {
-                printf("%c",words[i].word[j]);
-            }
-            printf("\n");
-        }
-        printf("\n");
-
-        // Brute-Force Algorithm
-        printf("----------------------------\n");
-        printf("         SOLUTIONS\n");
-        printf("----------------------------\n");
-        time = clock();
-        int found, firstFound, compare = 0;
-        for (i=0; i < wordcount; i++) {
-            printf("%d. ", i+1);
-            for (l = 0; l < words[i].length; l++) {
-                printf("%c",words[i].word[l]);
-            }
-            printf("\n");
-
-            found = 0; 
-            j = 0;
-            while (j < Row && !found) {
-                k = 0;
-                while (k < Col && !found) {
-                    solveFirst(Puzzle, j, k, words[i], &compare, &firstFound);
-                    if (firstFound) {
-                        solveE(Puzzle, j, k, words[i], &found, &compare);
-                        solveSE(Puzzle, j, k, words[i], &found, &compare);
-                        solveS(Puzzle, j, k, words[i], &found, &compare);
-                        solveSW(Puzzle, j, k, words[i], &found, &compare);
-                        solveW(Puzzle, j, k, words[i], &found, &compare);
-                        solveNW(Puzzle, j, k, words[i], &found, &compare);
-                        solveN(Puzzle, j, k, words[i], &found, &compare);
-                        solveNE(Puzzle, j, k, words[i], &found, &compare);
+            fp = fopen(directory, "r");
+            c = cPrev = getc(fp);
+            while ((c != '\n') || (cPrev != '\n')) {
+                if (c != '\n' && c != ' ') {
+                    Puzzle.matrix[i][j] = c;
+                    j++;
+                    if (j == Col) {
+                        j = 0;
+                        i++;
                     }
-                    k++;
                 }
-                j++;
+                cPrev = c;
+                c = getc(fp);
             }
-            if (!found) {
-                printf("Word is not found in the puzzle\n\n");
+
+            // Print puzzle
+            PrintMatrix(Puzzle);
+
+            // Read words
+            int wordcount = 0, wordlength = 0;
+            Word words[30];
+            c = getc(fp);
+            while (c != EOF) {
+                if (c == '\n') {
+                    words[wordcount].length = wordlength;
+                    wordcount++;
+                    wordlength = 0;
+                } else {
+                    words[wordcount].word[wordlength] = c;
+                    wordlength++;
+                }
+                c = getc(fp);
             }
+            words[wordcount].length = wordlength;
+            wordcount++;
+            fclose(fp);
+
+            // Print words
+            printf("\nKEYWORDS:\n");
+            for (i=0; i < wordcount; i++) {
+                printf("%d. ", i+1);
+                for (j = 0; j < words[i].length; j++) {
+                    printf("%c",words[i].word[j]);
+                }
+                printf("\n");
+            }
+            printf("\n");
+
+            // Brute-Force Algorithm
+            printf("----------------------------\n");
+            printf("         SOLUTIONS\n");
+            printf("----------------------------\n");
+            time = clock();
+            int found, firstFound, compare = 0;
+            for (i=0; i < wordcount; i++) {
+                printf("%d. ", i+1);
+                for (l = 0; l < words[i].length; l++) {
+                    printf("%c",words[i].word[l]);
+                }
+                printf("\n");
+
+                found = 0; 
+                j = 0;
+                while (j < Row && !found) {
+                    k = 0;
+                    while (k < Col && !found) {
+                        solveFirst(Puzzle, j, k, words[i], &compare, &firstFound);
+                        if (firstFound) {
+                            solveE(Puzzle, j, k, words[i], &found, &compare);
+                            solveSE(Puzzle, j, k, words[i], &found, &compare);
+                            solveS(Puzzle, j, k, words[i], &found, &compare);
+                            solveSW(Puzzle, j, k, words[i], &found, &compare);
+                            solveW(Puzzle, j, k, words[i], &found, &compare);
+                            solveNW(Puzzle, j, k, words[i], &found, &compare);
+                            solveN(Puzzle, j, k, words[i], &found, &compare);
+                            solveNE(Puzzle, j, k, words[i], &found, &compare);
+                        }
+                        k++;
+                    }
+                    j++;
+                }
+                if (!found) {
+                    printf("Word is not found in the puzzle\n\n");
+                }
+            }
+            time = clock() - time;
+            int time_consumed = (((double) time)/CLOCKS_PER_SEC)*1000;
+            printf("----------------------------\n");
+            printf("         STATISTICS\n");
+            printf("----------------------------\n");
+            printf("TOTAL LETTER COMPARISON: %d LETTERS\n", compare);
+            printf("TOTAL TIME TAKEN: %d miliseconds\n\n", time_consumed);        
         }
-        time = clock() - time;
-        int time_consumed = (((double) time)/CLOCKS_PER_SEC)*1000;
-        printf("----------------------------\n");
-        printf("         STATISTICS\n");
-        printf("----------------------------\n");
-        printf("TOTAL LETTER COMPARISON: %d LETTERS\n", compare);
-        printf("TOTAL TIME TAKEN: %d miliseconds\n\n", time_consumed);        
+
+        printf("Do you want to solve another puzzle? (Y/N): ");
+        scanf(" %c", &repeatprogram);
     }
-    
     return 0;
 }
