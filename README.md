@@ -52,7 +52,12 @@ VENUS
 Make sure to put your puzzle text file into the `test/` folder!
 
 ## Usage
-Simply run the `run.bat` from a file explorer or a terminal. Input the filename of the puzzle text file (including the .txt extension).
+Simply run the `run.bat`. Input the filename of the puzzle text file (including the .txt extension).
+
+Alternatively, you can run the program in the terminal by first going to the directory of the `bin/` folder and then running:
+```
+./main
+```
 
 ## Contact
 This program was made by Ahmad Alfani Handoyo (13520023).
