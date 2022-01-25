@@ -29,7 +29,7 @@ The file should follow the pattern:
 
 <KEYWORDS>
 ```
-with spaces separating each character of the puzzle. Between the puzzle there should be an empty line. An example is as follows
+with spaces separating each character of the puzzle. Between the puzzle and keywords there should be an empty line. An example is as follows:
 ```
 J S O L U T I S
 S U N A R U U A
@@ -49,10 +49,15 @@ URANUS
 VENUS
 ```
 
-Make sure to put your puzzle text file into th `test/` folder!
+Make sure to put your puzzle text file into the `test/` folder!
 
 ## Usage
-Simply run the `run.bat` from a file explorer or a terminal. Input the filename of the puzzle text file (including the .txt extension).
+Simply run the `run.bat`. Input the filename of the puzzle text file (including the .txt extension).
+
+Alternatively, you can run the program in the terminal by first going to the directory of the `bin/` folder and then running:
+```
+./main
+```
 
 ## Contact
 This program was made by Ahmad Alfani Handoyo (13520023).
